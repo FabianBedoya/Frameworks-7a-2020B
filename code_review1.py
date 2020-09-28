@@ -15,18 +15,29 @@ def dices () :
     tot = d1 + d2
     return [d1, d2, tot]
 
+def lanzamientos () :
+    # Valida solo numeros
+    while True:
+        try:
+            L = int(input("Cuantos lanzamientos desea hacer: "))
+            if L<1 :
+                print('\nATENCIÓN: Debe ingresar un número entero mayor a 0.')
+            else:
+                n = L
+                return n
+        except:
+            print('\nATENCIÓN: Debe ingresar un número entero mayor a 0.')
+    return n
+
 #Main ::::::::::::::::::::::::::::::::::::::::::::::
 os.system("cls")
 print("El minimo de lanzamientos aceptado es 1")
-L = int(input("Cuantos lanzamientos desea hacer: "))
-while L < 1 :
-    L = int(input("Cuantos lanzamientos desea hacer: "))
-    print("El minimo de lanzamientos aceptado es 1")   
+lan = lanzamientos()
 i = 1
 h = 0
 P = 0
 I = 0
-while i <= L:
+while i <= lan:
     print("Tiro Nro: ", i)
     dd = dices()
     print("Dice1: ", dd[0])
@@ -39,8 +50,9 @@ while i <= L:
         P += 1
     if dd[2]%2 != 0:
         I += 1
-    if dd[2] == 12 or (i-1)  == L:
+    if dd[2] == 12 or (i-1)  == lan:
         print("Sumatoria lanzamientos: ", h)
         print("Conteo de pares: ", P)
         print("Conteo de Impares: ", I)
         exit(0)
+
