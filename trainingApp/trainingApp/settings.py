@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+#import dj_database_url
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,15 +23,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 's!$23xt-am_fms%5bg=9)o-l4(l=j*8e=jj%-qu(s02+pc#!b&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Modo Producción:
+# DEBUG = False
+
+#  Modo Desarrollo:
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'market.apps.MarketConfig',
+    'warehouse.apps.WarehouseConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,16 +82,17 @@ WSGI_APPLICATION = 'trainingApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE'     : 'django.db.backends.postgresql_psycopg2',
-        'NAME'       : 'trainingApp',
-        'USER'       : 'postgres',
-        'PASSWORD'   : 'postgres',
-        'HOST'       : 'localhost',
-        'PORT'       : '5432',
-    }
+        'ENGINE'    : 'django.db.backends.postgresql_psycopg2',
+        'NAME'      : 'trainingApp',
+        'USER'      : 'postgres',
+        'PASSWORD'  : 'postgres',
+        'HOST'      : 'localhost',
+        'PORT'      : '5432',
+    } 
 }
+
+DATABASE_ROUTERS = ['warehouse.routers.WareHouseRouter',]
+
 
 
 # Password validation
