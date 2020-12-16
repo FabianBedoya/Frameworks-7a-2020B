@@ -32,11 +32,20 @@ class Product(models.Model) :
     create_date = models.DateTimeField('Date creatio') 
     update_date = models.DateTimeField('Date update')
 
+    def __str__(self):
+        return self.name, self.code, self.quantity
+
 class Client(models.Model):
     code = models.CharField(max_length=20)
     name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name, self.code
 
 class Country(models.Model):
     code = models.CharField(max_length=100)
     name = models.CharField(max_length=150)
     abrev = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name

@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 #import dj_database_url
+import pymysql
+import os
+pymysql.install_as_MySQLdb()
+pymysql.version_info = (1, 3, 13, 'final', 0)
+
 from pathlib import Path
 from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -91,7 +96,7 @@ DATABASES = {
     } 
 }
 
-DATABASE_ROUTERS = ['warehouse.routers.WareHouseRouter',]
+#DATABASE_ROUTERS = ['warehouse.routers.WareHouseRouter',]
 
 
 
@@ -132,3 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os. path.join(BASE_DIR, 'static'),
+]
+
